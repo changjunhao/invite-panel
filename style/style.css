@@ -1,0 +1,158 @@
+/*bass*/
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+ul, ol, li,
+form, fieldset, legend, button, input, textarea,
+th, td  {
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #000;
+    background-color: #fff
+}
+ul, ol{
+    list-style: none;
+}
+img{
+    border: 0;
+}
+a{
+    color: #259;
+    text-decoration: none;
+    outline: 0
+}
+a:hover, a:focus{
+    text-decoration: none;
+}
+.clear{
+    *zoom: 1
+}
+.clear:before,.clear:after{
+    display: table;
+    content: ""
+}
+.clear:after{
+    clear: both
+}
+/*main*/
+#invite-panel{
+    width: 960px;
+    border: 1px solid #DDDDDD;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    margin: 50px auto 0;
+}
+#invite-panel .invite-header{
+    margin: 16px 12px;
+    height: 30px;
+    color: #777777;
+    font-size: 14px;
+}
+#invite-panel .invite-header .invite-search input{
+    height: 28px;
+    width: 158px;
+    line-height: 28px;
+    border: solid 1px #DDDDDD;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    padding: 0 8px;
+    margin-right: 10px;
+}
+#invite-panel .invite-header .invite-status{
+    height: 28px;
+    line-height: 28px;
+}
+#invite-title{
+    font-size: 28px;
+    height: 28px;
+    line-height: 28px;
+    padding: 0;
+    margin: 0 12px;
+}
+.suggest-persons{
+    margin: 12px 12px 0;
+}
+.suggest-persons .person{
+    float: left;
+    width: 50%;
+    height: 65px;
+    overflow: hidden;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+    border-bottom: 1px dotted #eee;
+}
+.suggest-persons .even .user{
+    margin-right: 10px;
+}
+.suggest-persons .odd .user{
+    margin-left: 10px;
+}
+.suggest-persons .person .user .item-link{
+     float: left;
+     margin-right: 12px;
+     width: 36px;
+     height: 36px;
+}
+.suggest-persons .person .user .item-link .item-avatar{
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+}
+.suggest-persons .content{
+    overflow: hidden;
+}
+.suggest-persons .content .invite-button{
+    float: right;
+    padding: 1px 5px;
+}
+.suggest-persons .content .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 18px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.suggest-persons .content .btn-blue{
+    color: #FFFFFF;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.suggest-persons .content .btn-blue:hover{
+    background-color: #286090;
+    border-color: #204d74;
+}
+.suggest-persons .content .btn-cancel{
+    color: #FFFFFF;
+    background-color: #6a6a6a;
+    border-color: #ccc;
+}
+.suggest-persons .content .btn-cancel:hover{
+    background-color: #444444;
+    border-color: #ccc;
+}
+.suggest-persons .content .bio{
+    word-wrap: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
