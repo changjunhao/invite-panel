@@ -1,5 +1,7 @@
 # invite-panel
 知乎邀请面板
+##DEMO地址
+<a href="http://ifable.cn/works/new/invite/" target="_blank">ifable.cn/works/new/invite/</a>
 ## 功能说明
 界面如图所示
 ![preview](preview.png)
@@ -7,7 +9,7 @@
 - 邀请或收回时，更新上方的 「您已邀请 x 等 n 人」的链接和文字；
 
 ## 实现说明
-邀请面板页面内容来自一份JSON文件，本例涉及到CSS布局、DOM操作以及数据呈现，其中难点在数据呈现，我想到了三种解决方案：
+邀请面板页面内容来自一份JSON文件，本例涉及到CSS布局、DOM操作以及数据呈现，其中难点在数据呈现
 
 本例采用Ajax加载JSON文件，解析之后通过DOM操作将数据呈现。使用jQuery库完成DOM操作，jQuery版本为v1.11.3。
 
