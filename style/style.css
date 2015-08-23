@@ -69,6 +69,7 @@ a:hover, a:focus{
     height: 28px;
     line-height: 28px;
 }
+
 #invite-title{
     font-size: 28px;
     height: 28px;
@@ -131,6 +132,7 @@ a:hover, a:focus{
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
+    outline: none;
 }
 .suggest-persons .content .btn-blue{
     color: #FFFFFF;

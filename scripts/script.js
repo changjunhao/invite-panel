@@ -1,81 +1,59 @@
-$(function(){
-	$.getJSON("invite_panel.json",function(data){
-		var invited = data.invited
-		var recommended = data.recommended
-		$(".suggest-persons").html("");
-		$.each(recommended,function(i,item){
-			$(".suggest-persons").append(
-				'<li class="person">'+
-				'<div class="user">'+
-				'<a href="" class="item-link">'+
-				'<img class="item-avatar" src='+item.avatarUrl+' alt=""/>'+
-				'</a>'+
-				'<div class="content">'+
-				'<button class="invite-button btn btn-blue">邀请回答</button>'+
-				'<a class="name" href="#" data-slug='+item.slug+' data-id='+item.id+'>'+item.name+'</a>'+
-				'<div class="bio">'+item.bio+'</div></div></div></li>'
-			)
-			$(".person:odd").addClass("odd")
-			$(".person:even").addClass("even")
+var vue = new Vue({
+	el: "#invite-panel",
+	data:{
+		invited: {},
+		recommended: {},
+		invite: [],
+		inviteLength: 0,
+		tips: false,
+		showNum: false,
+		invitedNum: 0,
+		hide: true,
+	},
+	filters: {
+		isTips: function(value){
+			var length = this.invite.length
+			if(length == 0){
+				return value = false
+			}else if(length>0){
+				return value = true
+			}
+		},
+		showNum:function(value){
+			var length = this.invite.length
+			if(length < 3){
+				return value = false
+			}else if(length >= 3){
+				return value = true
+			}
+		},
+	},
+	methods: {
+		invite_on: function(index){
+			if(this.recommended[index].status == 0){
+				this.recommended[index].status = 1
+				this.invite.push(this.recommended[index].name)
+				this.invitedNum = this.invite.length
+			}else{
+				this.recommended[index].status = 0
+				this.invite.splice(this.invite.indexOf(this.recommended[index].name),1)
+				this.invitedNum = this.invite.length
+			}
+		},
+	},
+	ready: function(){
+		var salf = this
+		this.$http.get('invite_panel.json', function (data) {
+			salf.invited = data.invited
+			salf.recommended = data.recommended
+			for(var i=0;i<salf.recommended.length;i++){
+				salf.recommended[i].$add("status",0)
+			}
+			for(var i=0;i<salf.invited.length;i++){
+				salf.invited[i].$add("status",1)
+				salf.invite.push(salf.invited[i].name)
+			}
+			salf.invitedNum = salf.invite.length
 		})
-		var invitedName=[]
-		$.each(invited,function(i,item){
-			invitedName.push(item.name)
-		})
-		inviteStatus(invitedName)
-		changeInviteStatus(invitedName)
-	})
-})
-function changeInviteStatus(invitedName){
-	$(".invite-button").click(function(){
-		if($(this).hasClass("btn-blue")){
-			$(this).removeClass("btn-blue").addClass("btn-cancel")
-			$(this).text("收回邀请")
-			var name = $(this).next().text()
-			invitedName.push(name)
-		} else {
-			$(this).removeClass("btn-cancel").addClass("btn-blue")
-			$(this).text("邀请回答")
-			var name = $(this).next().text()
-			invitedName.splice($.inArray(name,invitedName),1)
-		}
-		inviteStatus(invitedName)
-	})
-}
-function inviteStatus(invitedName){
-	var invitedNum=invitedName.length
-	switch(invitedNum)
-	{
-		case 0:
-			$('.invite-status').html("")
-			break;
-		case 1:
-			initStatusHtml(invitedNum,invitedName)
-			break;
-		case 2:
-			initStatusHtml(invitedNum,invitedName)
-			$('.name-link:first').after('、')
-			break;
-		default:
-			initStatusHtml(invitedNum,invitedName)
-			$('.name-link:first').after('、')
-			$('.invite-status').append(
-				'等 '+invitedNum+' 人'
-			)
 	}
-}
-function initStatusHtml(invitedNum,invitedName){
-	$('.invite-status').html("")
-	$('.invite-status').text('您已邀请 ')
-	$('.invite-status').append(
-		'<span class="invited-list"></span>'
-	)
-	$.each(invitedName,function(i,item){
-		if(i<invitedNum-2){
-			return true
-		}
-		$('.invited-list').append(
-			'<a href="#" class="name-link">'+item+'</a>'
-		)
-	})
-}
+})

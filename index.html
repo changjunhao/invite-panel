@@ -12,12 +12,35 @@
       <span class="invite-search">
         <input type="text" name="search" placeholder="搜索你想邀请的人">
       </span>
-    <span class="invite-status"></span>
+    <span class="invite-status" v-show="tips | isTips">
+      您已邀请
+      <span class="invited-list" v-repeat="invite">
+        <a href="#" class="name-link">{{$value}}</a><span class="split">、</span>
+      </span>
+      <span v-show="showNum | showNum">等 {{invitedNum}} 人</span>
+    </span>
   </div>
   <h1 id="invite-title">推荐人选</h1>
-  <ul class="suggest-persons clear"></ul>
+  <ul id="suggest" class="suggest-persons clear">
+    <li class="person" v-repeat="recommended" v-class="even: $index%2 == 0,odd: $index % 2 != 0">
+      <div class="user">
+        <a href="" class="item-link">
+          <img class="item-avatar" v-attr="src:avatarUrl" alt="{{slug}}"/>
+        </a>
+        <div class="content">
+          <button class="invite-button btn" v-class="btn-blue:status==0,btn-cancel:status == 1"
+                  v-on="click: invite_on($index)" v-text="status == 0? '邀请回答':'收回邀请' "></button>
+          <a class="name" href="#" data-slug="{{slug}}" data-id="{{id}}">{{name}}</a>
+          <div class="bio">
+            {{bio}}
+          </div>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>
-<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/vue.js"></script>
+<script type="text/javascript" src="scripts/vue-resource.js"></script>
 <script type="text/javascript" src="scripts/script.js"></script>
 </body>
 </html>
